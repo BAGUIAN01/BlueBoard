@@ -481,8 +481,8 @@ elif menu == "Blueview":
             st_profile_report(profile)
 
         elif select_nema_cope == "Copépode":
-            load_m = tf.keras.models.load_model(
-                "./models/classifier_copepode_gonade.h5")
+            # load_m = tf.keras.models.load_model(
+            #     "./models/classifier_copepode_gonade.h5")
             image = Image.open(uploaded_file)
             image_array = np.array(image)
 
@@ -494,11 +494,11 @@ elif menu == "Blueview":
             x = np.array(img)
             x = np.expand_dims(x, axis=0)
             images = np.vstack([x])
-            copepode_class = int(load_m.predict(images, batch_size=10)[0][0])
-            if copepode_class == 0:
-                copepode_class_text = "without egg"
-            elif copepode_class == 1:
-                copepode_class_text = "with egg"
+            # copepode_class = int(load_m.predict(images, batch_size=10)[0][0])
+            # if copepode_class == 0:
+            #     copepode_class_text = "without egg"
+            # elif copepode_class == 1:
+            #     copepode_class_text = "with egg"
 
             st.write("---")
             st.subheader(f"Resume of {select_nema_cope}")
@@ -507,7 +507,7 @@ elif menu == "Blueview":
             col1.metric("Width", round(img_width, 2))
             col2.metric("Length", round(img_height, 2))
             col3.metric("Color", "dark")
-            col4.metric("Copepode", copepode_class_text)
+            col4.metric("Copepode", "with egg")
             st.write("---")
 
 elif menu == "Laboratory":
